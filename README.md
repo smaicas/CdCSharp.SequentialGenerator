@@ -1,4 +1,4 @@
-# CdCSharp.Generic 📚
+# CdCSharp.SequentialGenerator 📚
 
 [![NuGet](https://img.shields.io/nuget/v/CdCSharp.SequentialGenerator.svg)](https://www.nuget.org/packages/CdCSharp.SequentialGenerator)
 [![License](https://img.shields.io/github/license/smaicas/CdCSharp.SequentialGenerator)](LICENSE)
