@@ -8,7 +8,7 @@ using GeneratorExecutionContext = CdCSharp.SequentialGenerator.Abstractions.Gene
 
 namespace CdCSharp.SequentialGenerator.UnitTests;
 
-public class GeneratorExecutorTests
+public class GeneratorExecutor_Tests
 {
     [Fact]
     public async Task RunGenerators_ShouldGenerateFiles()

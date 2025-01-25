@@ -136,6 +136,12 @@ public static class GeneratorExecutor
     private static IEnumerable<string> GetAssemblyPaths(Project project)
     {
         HashSet<string> assemblies = [];
+        string? mainAssemblyPath = project.OutputFilePath;
+        if (!string.IsNullOrEmpty(mainAssemblyPath))
+        {
+            assemblies.Add(mainAssemblyPath);
+        }
+
         foreach (MetadataReference reference in project.MetadataReferences)
         {
             if (reference is PortableExecutableReference peReference)
