@@ -1,12 +1,11 @@
-﻿using CdCSharp.SequentialGenerator.Abstractions;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.MSBuild;
 using System.Diagnostics;
 using System.Reflection;
 
 namespace CdCSharp.SequentialGenerator;
-public static class GeneratorExecutor
+public static class GeneratorRunner
 {
     public static async Task RunGenerators(string rootPath, string outputPath)
     {
@@ -76,25 +75,11 @@ public static class GeneratorExecutor
             }
         }
 
-        IEnumerable<Type> imps = allTypes.Where(t => t.GetInterface(nameof(ISequentialGenerator)) != null);
-        List<(int Order, Type @Type)> sequentialGenerators = [];
-        foreach (Type imp in imps)
-        {
-            IList<CustomAttributeData> attrs = imp.GetCustomAttributesData();
-            CustomAttributeData? attr = attrs.FirstOrDefault(a => a.AttributeType.Name == nameof(SequentialGeneratorAttribute));
-            if (attr == null) { continue; }
-            if (attr.ConstructorArguments[0].Value is int value)
-            {
-                int order = value;
-                sequentialGenerators.Add((order, imp));
-            }
-        }
+        List<Type> imps = allTypes.Where(t => t.IsInstanceOfType(typeof(SequentialGeneratorBase))).ToList();
 
-        sequentialGenerators = sequentialGenerators.OrderBy(t => t.Order).ToList();
-        if (sequentialGenerators.Count <= 0) { return; }
+        if (imps.Count <= 0) { return; }
 
-        SequentialGeneratorOrchestrator orchestrator = new();
-        foreach ((int Order, Type @Type) in sequentialGenerators)
+        foreach (Type @Type in imps)
         {
             try
             {
@@ -111,8 +96,17 @@ public static class GeneratorExecutor
 
                 if (runtimeType != null)
                 {
-                    ISequentialGenerator generator = (ISequentialGenerator)Activator.CreateInstance(runtimeType)!;
-                    orchestrator.RegisterGenerator(runtimeType.Name, generator);
+                    SequentialGeneratorBase generator = (SequentialGeneratorBase)Activator.CreateInstance(runtimeType)!;
+
+                    GeneratorDriver driver = CSharpGeneratorDriver.Create(generator);
+                    driver = driver.RunGenerators(compilation);
+
+                    foreach (GeneratedSourceResult file in driver.GetRunResult().Results.SelectMany(r => r.GeneratedSources))
+                    {
+                        string path = Path.Combine(finalOutputPath, file.HintName);
+                        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+                        File.WriteAllText(path, file.SourceText.ToString());
+                    }
                 }
             }
             catch (Exception ex)
@@ -120,16 +114,6 @@ public static class GeneratorExecutor
                 Console.WriteLine($"Failed to load type {Type.FullName}: {ex.Message}");
                 continue;
             }
-        }
-
-        GeneratorDriver driver = CSharpGeneratorDriver.Create(orchestrator);
-        driver = driver.RunGenerators(compilation);
-
-        foreach (GeneratedSourceResult file in driver.GetRunResult().Results.SelectMany(r => r.GeneratedSources))
-        {
-            string path = Path.Combine(finalOutputPath, file.HintName);
-            Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-            File.WriteAllText(path, file.SourceText.ToString());
         }
     }
 

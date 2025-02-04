@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CdCSharp.SequentialGenerato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CdCSharp.SequentialGenerator.UnitTests", "test\CdCSharp.SequentialGenerator.UnitTests\CdCSharp.SequentialGenerator.UnitTests.csproj", "{2E7046E7-222D-4811-A178-F61E35CC4ADA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CdCSharp.SequentialGenerator.Runner", "src\CdCSharp.SequentialGenerator.Runner\CdCSharp.SequentialGenerator.Runner.csproj", "{967224CD-C15B-42C2-AB8A-E7C9E4EABC78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CdCSharp.SequentialGenerator.SnapshotTests", "test\CdCSharp.SequentialGenerator.SnapshotTests\CdCSharp.SequentialGenerator.SnapshotTests.csproj", "{954F435C-0E8D-4AAD-AF87-134697FAC0A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,14 @@ Global
 		{2E7046E7-222D-4811-A178-F61E35CC4ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E7046E7-222D-4811-A178-F61E35CC4ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E7046E7-222D-4811-A178-F61E35CC4ADA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{967224CD-C15B-42C2-AB8A-E7C9E4EABC78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{967224CD-C15B-42C2-AB8A-E7C9E4EABC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{967224CD-C15B-42C2-AB8A-E7C9E4EABC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{967224CD-C15B-42C2-AB8A-E7C9E4EABC78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{954F435C-0E8D-4AAD-AF87-134697FAC0A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{954F435C-0E8D-4AAD-AF87-134697FAC0A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{954F435C-0E8D-4AAD-AF87-134697FAC0A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{954F435C-0E8D-4AAD-AF87-134697FAC0A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,5 +51,7 @@ Global
 		{8C0A14E4-67E7-4895-94F2-35E43235343D} = {E7A88412-70BC-4D2A-9568-BE5A9BDC825D}
 		{34BD67BF-2FA7-4CF3-B061-F8D1F1B56FCE} = {E7A88412-70BC-4D2A-9568-BE5A9BDC825D}
 		{2E7046E7-222D-4811-A178-F61E35CC4ADA} = {D6937B22-1C02-42E0-95DE-8795CC6CD314}
+		{967224CD-C15B-42C2-AB8A-E7C9E4EABC78} = {E7A88412-70BC-4D2A-9568-BE5A9BDC825D}
+		{954F435C-0E8D-4AAD-AF87-134697FAC0A6} = {D6937B22-1C02-42E0-95DE-8795CC6CD314}
 	EndGlobalSection
 EndGlobal
