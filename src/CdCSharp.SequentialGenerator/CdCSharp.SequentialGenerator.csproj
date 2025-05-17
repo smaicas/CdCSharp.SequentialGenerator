@@ -30,21 +30,6 @@
 		<InternalsVisibleTo Include="CdCSharp.SequentialGenerator.UnitTests" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<None Include="..\..\LICENSE.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-		<None Include="..\..\logo.png">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-		<None Include="..\..\README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
-
   <ItemGroup>
 	  <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.12.0" />
 	  <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0" />
