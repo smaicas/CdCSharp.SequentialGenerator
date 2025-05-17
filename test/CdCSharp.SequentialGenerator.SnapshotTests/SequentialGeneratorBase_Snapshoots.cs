@@ -44,8 +44,7 @@ namespace TestApp
         GeneratorDriverRunResult runResult = driver.GetRunResult();
 
         // Verify generated content using Verify
-        await Verify(driver)
-            .UseDirectory("Snapshots");
+        await Verify(driver);
     }
 
     private static List<MetadataReference> GetDefaultReferences()

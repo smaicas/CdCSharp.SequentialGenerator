@@ -3,6 +3,7 @@
 
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<Nullable>enable</Nullable>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<PackageId>CdCSharp.SequentialGenerator</PackageId>

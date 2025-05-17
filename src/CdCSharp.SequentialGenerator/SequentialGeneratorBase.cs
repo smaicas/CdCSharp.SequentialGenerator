@@ -7,6 +7,8 @@ namespace CdCSharp.SequentialGenerator;
 /// <summary>
 /// Orchestrator that manages the sequential execution of generators
 /// </summary>
+
+[Generator]
 public abstract class SequentialGeneratorBase : IIncrementalGenerator
 {
     private readonly List<ISequentialGenerator> _generators = [];
